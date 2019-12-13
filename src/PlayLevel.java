@@ -85,7 +85,7 @@ public class PlayLevel {
 
         // Repeat the game several times, maybe.
         // for experiment
-        int maxRounds = 10;      // for experiment
+//        int maxRounds = 10;      // for experiment
         int round = 1;          // for experiment
         int winCount = 0;       // for experiment
         ArrayList<Integer> jumpsCounts = new ArrayList<>();
@@ -94,7 +94,7 @@ public class PlayLevel {
         ArrayList<Integer> remainingTimes = new ArrayList<>();
         //////
         int playAgain = 0;
-        while (playAgain == 0 && round++ <= maxRounds) {  // 0 - play again! 1 - end execution.
+        while (playAgain == 0) {  // 0 - play again! 1 - end execution.
 
             // Play the level, either as a human ...
             //MarioResult result = game.playGame(level, 200, 0);
@@ -130,10 +130,11 @@ public class PlayLevel {
             }
 
             // Check if we should play again.
+            round++;
             playAgain = (game.playAgain == 0 && visuals) ? 0 : 1;  // If visuals are not on, only play 1 time
         }
         // experiment statistics
-        System.out.println("Win rate: " + (double) winCount / Math.min(round, maxRounds));
+        System.out.println("Win rate: " + (double) winCount / round);
 
         int totalJumps = 0;
         for (int jumpCount : jumpsCounts) totalJumps += jumpCount;
